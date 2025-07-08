@@ -1,0 +1,34 @@
+import verificar_formatar as vf
+act = ['Ver lista de compras', 'Adicionar novo item',
+       'Apagar toda a lista', 'Sair']
+opc = [1, 2, 3, 4]
+continuar = True
+while continuar:
+    print('=== LISTA DE COMPRAS ===')
+    for a, o in zip(act, opc):
+        print(f'{a}.......[{o}]')
+    entrada_usuario = input('Digite o número da opção:')
+    resp_cnvrt = vf.num_inteiro(entrada_usuario)
+    if isinstance(resp_cnvrt, str):
+        print('VALOR INVÁLIDO, TENTE NOVAMENTE')
+        continue
+    if resp_cnvrt == 4:
+        continuar = False
+    try: 
+        if resp_cnvrt == 1:
+            with open('lista_de_compras.txt', 'r') as lista:
+                linhas = lista.readlines()
+                for indice, linha in enumerate(linhas):
+                    print(f'{indice+1}----------{linha}')
+    except:
+        print('ARQUIVO NÃO ENCONTRADO.')
+    if resp_cnvrt == 2:
+        with open('lista_de_compras.txt', 'a') as lista:
+            item_novo = input('Digite o nome do item:')
+            lista.write(item_novo.title().strip() + '\n')
+            print('Item adicionado com sucesso!')
+    if resp_cnvrt == 3:
+        with open('lista_de_compras.txt', 'w') as lista:
+            print('Conteúdo anterior apagado!')
+            lista.write('')
+print('Saindo do programa.')
