@@ -19,8 +19,8 @@ while continuar:
             with open('lista_de_compras.txt', 'r') as lista:
                 linhas = lista.readlines()
                 for indice, linha in enumerate(linhas):
-                    print(f'{indice+1}----------{linha}')
-    except:
+                    print(f'{indice+1}----------{linha.strip()}')
+    except FileNotFoundError:
         print('ARQUIVO NÃO ENCONTRADO.')
     if resp_cnvrt == 2:
         with open('lista_de_compras.txt', 'a') as lista:
