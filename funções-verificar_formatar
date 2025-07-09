@@ -1,0 +1,6 @@
+def num_inteiro(num):
+    try:
+        valor_inteiro = int(num)
+        return valor_inteiro
+    except (ValueError, TypeError):
+        return 'VALOR INVÁLIDO'
