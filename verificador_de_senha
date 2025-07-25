@@ -1,0 +1,43 @@
+lista_regras = ['Deve ter pelo menos um número e uma letra.', 
+          'Deve ter pelo menos uma letra minúscula.',
+          'Deve ter pelo menos uma letra maiúscula.',
+          'Deve ter pelo menos um símbolos da lista [#, @, $].',
+          'Deve ter no mínimo 6 e no máximo 10 caracteres.']
+
+lista_erros = []
+
+print('====== REQUISITOS PARA A CRIAÇÃO DE SENHA ======')
+for indice, regra in enumerate(lista_regras):
+    print(f'[{indice+1}]  {regra}')
+
+senha = str(input('Digite sua senha:')).strip()
+
+if senha.isnumeric() == True:
+    lista_erros.append('Não há letras')
+
+elif senha.isalpha() == True:
+    lista_erros.append('Não há números')
+
+if senha.islower() == True:
+    lista_erros.append('Não há letras em maiúsculo')
+
+elif senha.isupper() == True:
+    lista_erros.append('Não há letras em minúsculo')
+
+acumulador = 0
+for parte in senha:
+    if parte in ['#', '@', '$']:
+        acumulador += 1
+if acumulador == 0:
+    lista_erros.append('Não há símbolos')
+
+if len(senha) < 6 or len(senha) > 10:
+    lista_erros.append('Tamanho da senha fora do intervalo')
+
+if len(lista_erros) == 0:
+    print('\033[32mSenha válida!\033[m')
+else:
+    print('\033[31mSenha inválida!\033[m')
+    for indice, erro in enumerate(lista_erros):
+        print(f'{indice+1} --> {erro}')
+
